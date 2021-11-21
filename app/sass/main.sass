@@ -190,17 +190,15 @@
 		&::before
 			transform: scale(1)
 
-.h1
+.h1, h1
 	font-size: 2.25em
-	font-weight: 700
 	font-family: $f_title
 
 	+r(992)
 		font-size: 1.75em
 
-.h2
+.h2, h2
 	font-size: 2.25em
-	font-weight: 700
 	margin-left: 20px
 	margin-bottom: 8px
 	font-family: $f_title
@@ -290,6 +288,10 @@
 		display: flex
 		gap: 7px
 
+		a
+			&:hover
+				transform: scale(1.2)
+
 		img
 			width: 24px
 			height: 24px
@@ -301,6 +303,10 @@
 		color: #fff
 		position: relative
 		cursor: pointer
+		+transition
+
+		&:hover
+			transform: scale(1.1)
 
 		&_img
 			width: 47px
@@ -315,8 +321,7 @@
 			width: 180px
 			height: 40px
 			position: absolute
-			overflow: scroll
-			top: 55px
+			top: 50px
 			border-radius: 0 0 4px 4px
 			transform: translate(-50%, -50%)
 			left: 50%
@@ -381,6 +386,13 @@
 			background: rgba(46, 46, 46, 0.6)
 			position: absolute
 
+	&__loop
+		border: none
+		background: transparent
+
+		&:hover
+			transform: scale(1.1)
+
 .main
 	background: $bg
 
@@ -421,12 +433,12 @@
 		width: 100%
 		position: relative
 
+		+r(576)
+			max-width: 100%
+
 		input
 			&::placeholder
 				color: #988F8F
-
-		+r(576)
-			max-width: 100%
 
 	&__search
 		height: 30px
@@ -576,6 +588,10 @@
 		display: flex
 		gap: 15px
 
+		a
+			&:hover
+				transform: scale(1.2)
+
 		img
 			width: 24px
 			height: 24px
@@ -587,8 +603,6 @@
 
 	+r(992)
 		padding-bottom: 30px
-
-	+r(992)
 		padding-top: 15px
 
 	&__container
@@ -638,7 +652,6 @@
 	font-size: 1.25em
 	font-weight: 400
 
-
 	+r(1200)
 		width: 70%
 
@@ -646,9 +659,26 @@
 		width: 100%
 		padding: 20px
 
-	&__img
+	&__info
+		display: flex
+		flex-wrap: wrap
+		gap: 50px
+		justify-content: space-around
+
+		&_item
+			display: flex
+			flex-direction: column
+			align-items: center
+
 		&_text
 			font-size: 1.125em
+
+		&_img
+			display: flex
+			height: 150px
+			align-items: center
+			margin-bottom: 20px
+
 
 	&__wrap
 		display: flex
@@ -689,23 +719,6 @@
 					&:hover
 						color: $accent
 
-	&__listimg
-		display: flex
-		flex-wrap: wrap
-		gap: 50px
-		justify-content: space-around
-
-	&__img
-		display: flex
-		flex-direction: column
-		align-items: center
-
-		&_wrap
-			display: flex
-			align-items: center
-			height: 150px
-			margin-bottom: 20px
-
 .news
 	width: 23%
 
@@ -720,10 +733,17 @@
 
 	&__text
 		font-size: 0.875em
+		color: $text
+
+		&:hover
+			color: $text
 
 	&__more
 		font-size: 0.875em
 		font-weight: 500
+		border: none
+		background: transparent
+		text-align: start
 
 	&__list
 		background: #fff
@@ -782,13 +802,13 @@
 	max-width: 300px
 	width: 100%
 
+	+r(992)
+		display: none
+
 	&--open
 		display: block !important
 		margin: auto
 		max-width: 100%
-
-	+r(992)
-		display: none
 
 	&__open
 		font-size: 1.125em
@@ -846,11 +866,18 @@
 			font-size: 1.25em
 			margin-bottom: 3px
 			padding: 0 25px
+			+transition
+			&:hover
+				text-decoration: underline
+
 			&:first-child
 				padding: 25px 25px 0 25px
 
 			&:last-child
 				padding: 0 25px 25px 25px
+
+		&--active
+			height: 258px
 
 	&__subsidy
 		color: $accent !important
@@ -1164,7 +1191,6 @@
 		max-width: 450px
 		font-size: 1.25em
 		line-height: 1
-		margin-bottom: 10px
 
 		+r(992)
 			max-width: 550px
@@ -1177,12 +1203,15 @@
 			display: block
 			border-bottom: 1px dashed #C4C4C4
 			position: absolute
-			bottom: 0
+			bottom: 10px
 			right: 0
 			left: 0
 
 		span
 			background: #fff
+			height: 40px
+			display: flex
+			align-items: center
 			z-index: 1
 			&:first-child
 				padding-right: 10px
@@ -1201,7 +1230,9 @@
 		font-size: 1.25em
 		color: #A4A4A4
 		line-height: 1
-		margin-bottom: 10px
+		height: 40px
+		display: flex
+		align-items: center
 
 //-----calendar-----
 .cabinet__calendar

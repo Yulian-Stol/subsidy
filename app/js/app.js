@@ -2,92 +2,9 @@
 
 document.addEventListener("DOMContentLoaded", function() {
 
-	const date = new Date();
-
-	const renderCalendar = () => {
-		date.setDate(1);
-	
-		const monthDays = document.querySelector(".days");
-	
-		const lastDay = new Date(
-			date.getFullYear(),
-			date.getMonth() + 1,
-			0
-		).getDate();
-	
-		const prevLastDay = new Date(
-			date.getFullYear(),
-			date.getMonth(),
-			0
-		).getDate();
-	
-		const firstDayIndex = date.getDay();
-	
-		const lastDayIndex = new Date(
-			date.getFullYear(),
-			date.getMonth() + 1,
-			0
-		).getDay();
-	
-		const nextDays = 7 - lastDayIndex - 1;
-	
-		const months = [
-			"Январь",
-			"Февраль",
-			"Март",
-			"Апрель",
-			"Май",
-			"Июнь",
-			"Июль",
-			"Август",
-			"Сентябрь",
-			"Октябрь",
-			"Ноябрь",
-			"Декабрь",
-		];
-	
-		document.querySelector(".date h1").innerHTML = months[date.getMonth()];
-	
-		document.querySelector(".date p").innerHTML = new Date().toDateString();
-	
-		let days = "";
-	
-		for (let x = firstDayIndex; x > 0; x--) {
-			days += `<div class="prev-date">${prevLastDay - x + 1}</div>`;
-		}
-	
-		for (let i = 1; i <= lastDay; i++) {
-			if (
-				i === new Date().getDate() &&
-				date.getMonth() === new Date().getMonth()
-			) {
-				days += `<div class="today">${i}</div>`;
-			} else {
-				days += `<div>${i}</div>`;
-			}
-		}
-	
-		for (let j = 1; j <= nextDays; j++) {
-			days += `<div class="next-date">${j}</div>`;
-			monthDays.innerHTML = days;
-		}
-	};
-	
-	document.querySelector(".prev").addEventListener("click", () => {
-		date.setMonth(date.getMonth() - 1);
-		renderCalendar();
-	});
-	
-	document.querySelector(".next").addEventListener("click", () => {
-		date.setMonth(date.getMonth() + 1);
-		renderCalendar();
-	});
-	
-	renderCalendar();
-
 		const accordions = (accordionSelector) => {
 			const	accordion = document.querySelectorAll(accordionSelector);
-		
+
 			accordion.forEach(item => {
 				const accordionClick = item.querySelector('.part__header'),
 							accordionContent = item.querySelector('.part__content');
@@ -143,99 +60,45 @@ document.addEventListener("DOMContentLoaded", function() {
 			const header = document.querySelector(headerSelector),
 						tab = document.querySelectorAll(tabSelector),
 						content = document.querySelectorAll(contentSelector);
-
-			function hideTabContent() {
-				content.forEach(item => {
-					item.style.display = "none";
-				});
-
-				tab.forEach(item => {
-					item.classList.remove(activeClass);
-				});
-			}
-
-			function showTabContent(i = 0) {
-				content[i].style.display = "block";
-				tab[i].classList.add(activeClass);
-			}
-
-			hideTabContent();
-			showTabContent();
-
-			header.addEventListener('click', (e) => {
-				const target = e.target;
-				if (target && 
-					(target.classList.contains(tabSelector.replace(/\./, '')) || 
-					target.parentNode.classList.contains(tabSelector.replace(/\./, '')))) {
-					tab.forEach((item, i) => {
-						if (target == item || target.parentNode == item) {
-							hideTabContent();
-							showTabContent(i);
-						}
+			
+			if(header) {
+				function hideTabContent() {
+					content.forEach(item => {
+						item.style.display = "none";
+					});
+	
+					tab.forEach(item => {
+						item.classList.remove(activeClass);
 					});
 				}
-			});
+	
+				function showTabContent(i = 0) {
+					content[i].style.display = "block";
+					tab[i].classList.add(activeClass);
+				}
+	
+				hideTabContent();
+				showTabContent();
+	
+				header.addEventListener('click', (e) => {
+					const target = e.target;
+					if (target && 
+						(target.classList.contains(tabSelector.replace(/\./, '')) || 
+						target.parentNode.classList.contains(tabSelector.replace(/\./, '')))) {
+						tab.forEach((item, i) => {
+							if (target == item || target.parentNode == item) {
+								hideTabContent();
+								showTabContent(i);
+							}
+						});
+					}
+				});
+			}
+
 		};
 		tabs('.home', '.home__wrapper', '.tabs__wrap', 'home--active');
 	};
 
-	//----------------------SCROLL-----------------------
-		const scrollTo = (scrollTo) => {
-			let list = document.querySelector(scrollTo);
-			list = '.' + list.classList[0]  + ' li a[href^="#"';
-	
-			document.querySelectorAll(list).forEach(link => {
-	
-				link.addEventListener('click', function(e) {
-						e.preventDefault();
-						const scrollMenu = document.querySelector(scrollTo);
-	
-						let href = this.getAttribute('href').substring(1);
-	
-						const scrollTarget = document.getElementById(href);
-	
-						// const topOffset = scrollMenu.offsetHeight;
-						const topOffset = 70;
-						const elementPosition = scrollTarget.getBoundingClientRect().top;
-						const offsetPosition = elementPosition - topOffset;
-	
-						window.scrollBy({
-								top: offsetPosition,
-								behavior: 'smooth'
-						});
-	
-						
-						let button = document.querySelector('.hamburger'),
-								nav = document.querySelector('.header__nav'),
-								header = document.querySelector('.header');
-	
-						button.classList.remove('hamburger--active');
-						nav.classList.remove('header__nav--active');
-						header.classList.remove('header--menu');
-				});
-			});
-		};
-		// scrollTo('.header__nav');
-	
-	//----------------------FIXED-HEADER-----------------------
-		const headerFixed = (headerFixed, headerActive) => {
-			const header =  document.querySelector(headerFixed),
-						active = headerActive.replace(/\./, '');
-	
-			window.addEventListener('scroll', function() {
-				const top = pageYOffset;
-				
-				if (top >= 90) {
-					header.classList.add(active);
-				} else {
-					header.classList.remove(active);
-				}
-	
-			});
-	
-		};
-		// headerFixed('.header', '.header--active');
-	
 	//----------------------HAMBURGER-----------------------
 		const hamburger = (hamburgerButton, hamburgerNav, hamburgerHeader) => {
 			const button = document.querySelector(hamburgerButton),
@@ -250,46 +113,6 @@ document.addEventListener("DOMContentLoaded", function() {
 	
 		};
 		hamburger('.hamburger', '.header__nav', '.header');
-		
-	//----------------------MODAL-----------------------
-		const modals = (modalSelector) => {
-			const	modal = document.querySelectorAll(modalSelector);
-
-			if (modal) {
-				let i = 1;
-
-				modal.forEach(item => {
-					const wrap = item.id;
-					const link = document.querySelectorAll('.' + wrap);
-
-					link.forEach(linkItem => {
-						let close = item.querySelector('.close');
-							if (linkItem) {
-								linkItem.addEventListener('click', (e) => {
-									if (e.target) {
-										e.preventDefault();
-									}
-									item.classList.add('active');
-								});
-							}
-
-							if (close) {
-								close.addEventListener('click', () => {
-									item.classList.remove('active');
-								});
-							}
-
-						item.addEventListener('click', (e) => {
-							if (e.target === item) {
-								item.classList.remove('active');
-							}
-						});
-					});
-				});
-			}
-
-		};
-		modals('.modal');
 
 	//----------------------FORM-----------------------
 		const forms = (formsSelector) => {
@@ -455,6 +278,89 @@ document.addEventListener("DOMContentLoaded", function() {
 		});
 		};
 		forms('.form');
+
+		const date = new Date();
+
+		const renderCalendar = () => {
+			date.setDate(1);
+	
+			const monthDays = document.querySelector(".days");
+	
+			const lastDay = new Date(
+				date.getFullYear(),
+				date.getMonth() + 1,
+				0
+			).getDate();
+	
+			const prevLastDay = new Date(
+				date.getFullYear(),
+				date.getMonth(),
+				0
+			).getDate();
+	
+			const firstDayIndex = date.getDay();
+	
+			const lastDayIndex = new Date(
+				date.getFullYear(),
+				date.getMonth() + 1,
+				0
+			).getDay();
+	
+			const nextDays = 7 - lastDayIndex - 1;
+	
+			const months = [
+				"January",
+				"February",
+				"March",
+				"April",
+				"May",
+				"June",
+				"July",
+				"August",
+				"September",
+				"October",
+				"November",
+				"December",
+			];
+	
+			document.querySelector(".date h1").innerHTML = months[date.getMonth()];
+	
+			document.querySelector(".date p").innerHTML = new Date().toDateString();
+	
+			let days = "";
+	
+			for (let x = firstDayIndex; x > 0; x--) {
+				days += `<div class="prev-date">${prevLastDay - x + 1}</div>`;
+			}
+	
+			for (let i = 1; i <= lastDay; i++) {
+				if (
+					i === new Date().getDate() &&
+					date.getMonth() === new Date().getMonth()
+				) {
+					days += `<div class="today">${i}</div>`;
+				} else {
+					days += `<div>${i}</div>`;
+				}
+			}
+	
+			for (let j = 1; j <= nextDays; j++) {
+				days += `<div class="next-date">${j}</div>`;
+				monthDays.innerHTML = days;
+			}
+		};
+	
+		document.querySelector(".prev").addEventListener("click", () => {
+			date.setMonth(date.getMonth() - 1);
+			renderCalendar();
+		});
+	
+		document.querySelector(".next").addEventListener("click", () => {
+			date.setMonth(date.getMonth() + 1);
+			renderCalendar();
+		});
+	
+		renderCalendar();
 
 });
 	
