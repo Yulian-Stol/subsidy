@@ -37,6 +37,7 @@
 	font-size: 13px
 	color: #text
 	font-weight: 600
+	gap: 5px
 
 	&:hover
 		border: 1px solid $accent
@@ -86,8 +87,8 @@
 	outline: none
 	display: none
 	z-index: 100
-	right: 0
-	+transition
+	left: 0
+	transition: all .65s
 
 	+r(992)
 		display: block
@@ -132,16 +133,8 @@
 	&--active
 		z-index: 100
 		position: absolute
-		right: 150px
-
-		+r(767)
-			right: 100px
-
-		+r(576)
-			right: 80px
-
-		+r(480)
-			right: 65px
+		left: 75%
+		top: 15px
 
 		&:hover
 			span
@@ -198,76 +191,33 @@
 			transform: scale(1)
 
 .h1
-	font-size: 36px
+	font-size: 2.25em
 	font-weight: 700
+	font-family: $f_title
 
 	+r(992)
-		font-size: 28px
+		font-size: 1.75em
 
 .h2
-	font-size: 36px
+	font-size: 2.25em
 	font-weight: 700
 	margin-left: 20px
 	margin-bottom: 8px
-
-.header
-	&__language
-		&_title
-			font-size: 16px
-
-	&__contact
-		a
-			font-size: 16px
-
-.pagenav__wrap_title
-	font-size: 18px
-	font-weight: 500
-
-.footer
-
-	&__logo
-		&_text
-			font-size: 28px
-			font-weight: 400
-
-			+r(1200)
-				font-size: 1.30em
-
-	&__list
-		font-size: 20px
-
-	&__contact
-		font-size: 20px
-
-.offers
-	font-size: 20px
-	font-weight: 400
-
-	&__img
-		&_text
-			font-size: 18px
-
-.news
-	&__subtitle
-		font-size: 16px
-		font-weight: 700
-
-	&__text
-		font-size: 14px
-
-	&__more
-		font-size: 14px
-		font-weight: 500
+	font-family: $f_title
 
 //-------main-page-----
 .header
 	position: fixed
+	height: 48px
 	top: 0
 	right: 0
 	left: 0
 	padding: 10px 0
 	background: $accent
 	z-index: 1000
+
+	+r(992)
+		padding: 15px 0
 
 	&__container
 		+r(992)
@@ -282,7 +232,7 @@
 		+r(992)
 			position: fixed
 			top: 0
-			left: -200%
+			left: -150%
 			bottom: 0
 			background: $accent
 			z-index: 50
@@ -303,7 +253,12 @@
 		display: none
 
 		+r(992)
-			display: block
+			display: flex
+			align-items: center
+			gap: 10px
+			position: absolute
+			right: 20px
+			top: 11px
 
 	&__contact
 		display: flex
@@ -344,6 +299,40 @@
 		gap: 10px
 		text-decoration: underline
 		color: #fff
+		position: relative
+		cursor: pointer
+
+		&_img
+			width: 47px
+			height: 23px
+
+			img
+				width: 100%
+				height: 100%
+				object-fit: cover
+
+		&_select
+			width: 180px
+			height: 40px
+			position: absolute
+			overflow: scroll
+			top: 55px
+			border-radius: 0 0 4px 4px
+			transform: translate(-50%, -50%)
+			left: 50%
+			background: $accent
+			padding: 5px
+			flex-direction: column
+			align-items: center
+			gap: 10px
+			display: none
+
+			&--active
+				display: flex
+
+			p
+				overflow: hidden
+				text-overflow: ellipsis
 
 	&__logo
 		&_mobile
@@ -369,14 +358,28 @@
 			display: none
 
 			+r(992)
-				display: block
+				display: flex
+				flex-direction: column
 
-			p
+			a
 				font-size: 1.25em
 				margin-bottom: 3px
+				color: $text
 				&:last-child
 					margin-bottom: 0
 
+	&__wrapper
+		+transition
+
+	&--menu
+		.header__wrapper
+			top: 0
+			right: 0
+			left: 0
+			width: 1000vw
+			height: 1000vw
+			background: rgba(46, 46, 46, 0.6)
+			position: absolute
 
 .main
 	background: $bg
@@ -470,6 +473,8 @@
 			line-height: 1.1
 			text-decoration: underline
 			color: $text
+			font-size: 1.125em
+			font-weight: 500
 
 			&:hover
 				color: $text
@@ -487,6 +492,20 @@
 			flex-direction: column
 			align-items: center
 			gap: 30px
+
+	&__logo
+		&_text
+			font-size: 1.75em
+			font-weight: 400
+
+			+r(1200)
+				font-size: 1.30em
+
+	&__list
+		font-size: 1.25em
+
+	&__contact
+		font-size: 1.25em
 
 	&__logo
 		display: flex
@@ -557,6 +576,10 @@
 		display: flex
 		gap: 15px
 
+		img
+			width: 24px
+			height: 24px
+
 .home
 	padding-top: 60px
 	padding-bottom: 190px
@@ -612,6 +635,9 @@
 	width: 74%
 	display: flex
 	flex-direction: column
+	font-size: 1.25em
+	font-weight: 400
+
 
 	+r(1200)
 		width: 70%
@@ -619,6 +645,10 @@
 	+r(992)
 		width: 100%
 		padding: 20px
+
+	&__img
+		&_text
+			font-size: 1.125em
 
 	&__wrap
 		display: flex
@@ -685,6 +715,16 @@
 	+r(992)
 		width: fit-content
 
+	&__subtitle
+		font-weight: 700
+
+	&__text
+		font-size: 0.875em
+
+	&__more
+		font-size: 0.875em
+		font-weight: 500
+
 	&__list
 		background: #fff
 		padding: 30px 20px
@@ -728,6 +768,9 @@
 	padding-bottom: 100px
 	border-bottom: 2px solid $accent
 
+	+r(992)
+		padding-bottom: 50px
+
 	&__container
 		display: flex
 		gap: 105px
@@ -748,6 +791,7 @@
 		display: none
 
 	&__open
+		font-size: 1.125em
 		display: none
 
 		+r(992)
@@ -761,7 +805,10 @@
 		display: flex
 		justify-content: space-between
 		align-items: center
-		margin-bottom: 15px
+
+		+r(992)
+			margin-bottom: 15px
+
 		a
 			color: $accent
 			text-decoration: underline
@@ -773,6 +820,7 @@
 		+transition
 
 		p
+			font-size: 1.125em
 			display: flex
 			align-items: center
 			gap: 10px
@@ -791,7 +839,11 @@
 		background: #fff
 		+transition
 
-		p
+		a
+			color: $text
+			text-decoration: none
+			display: block
+			font-size: 1.25em
 			margin-bottom: 3px
 			padding: 0 25px
 			&:first-child
@@ -801,9 +853,10 @@
 				padding: 0 25px 25px 25px
 
 	&__subsidy
-		color: $accent
+		color: $accent !important
 		display: flex
 		align-items: center
+		margin-bottom: 0 !important
 
 		&--radius
 			border-radius: 0 0 4px 4px
@@ -951,6 +1004,7 @@
 		+r(767)
 			flex-direction: column
 			gap: 10px
+			margin-bottom: 45px
 			&:last-child
 				align-items: start
 
@@ -959,25 +1013,56 @@
 		max-width: 160px
 		width: 100%
 
+		+r(992)
+			font-size: 1.5em
+
 	&__txt
 		margin-bottom: 10px
+		font-weight: 500
+
+		+r(992)
+			font-size: 0.875em
 		&:last-child
 			margin-bottom: 0
-
 
 //-------cabinet-------
 
 .cabinet
 	padding-top: 45px
+	padding-bottom: 100px
+	border-bottom: 2px solid $accent
+
+	+r(576)
+		padding-bottom: 50px
+
+	&__title
+		margin-top: 15px
+
+		+r(992)
+			text-align: center
+
+		+r(576)
+			text-align: start
 
 	&__wrap
 		display: flex
 		margin-bottom: 50px
 
+		+r(992)
+			flex-direction: column
+			align-items: center
+
 	&__block
 		width: 50%
+
+		+r(992)
+			width: 100%
+
 		&:last-child
 			padding-left: 20px
+
+			+r(992)
+				padding-left: 0
 
 	&__dock
 		&_content
@@ -985,16 +1070,32 @@
 			background: #fff
 			border-radius: 4px
 			max-width: 500px
-			margin-bottom: 15px
+			margin-bottom: 70px
 			position: relative
+			
+			+r(1200)
+				margin-bottom: 114px
+
+			+r(992)
+				max-width: 100%
+				margin-bottom: 60px
+
+			+r(767)
+				padding: 25px
 
 			p
 				font-size: 1.375em
+				font-weight: 500
+
+				+r(576)
+					font-size: 1em
 
 		&_list
 			display: flex
 			align-items: center
 			justify-content: space-between
+			flex-wrap: wrap
+			gap: 10px
 			margin-bottom: 10px
 			&:last-child
 				margin-bottom: 0
@@ -1010,8 +1111,16 @@
 		border-radius: 4px
 		max-width: 515px
 
+		+r(992)
+			max-width: 100%
+
 .report
 	display: flex
+	+r(992)
+		margin-bottom: 25px
+
+	+r(992)
+		flex-direction: column
 
 	&--active
 		color: #078714
@@ -1020,6 +1129,9 @@
 		font-size: 1.875em
 		position: relative
 		margin-bottom: 35px
+
+		+r(576)
+			font-size: 1.70em
 
 		span
 			font-size: 0.6em
@@ -1035,235 +1147,180 @@
 		&:last-child
 			border-left: 1px solid $accent
 
+			+r(992)
+				border-top: 1px solid $accent
+				border-left: none
+
+		+r(992)
+			margin-bottom: 0
+			width: 100%
+			padding: 20px
+
 	&__text
+		position: relative
 		display: flex
 		justify-content: space-between
 		align-items: center
 		max-width: 450px
 		font-size: 1.25em
+		line-height: 1
+		margin-bottom: 10px
+
+		+r(992)
+			max-width: 550px
+
+		+r(576)
+			font-size: 1em
+
+		&::after
+			content: ''
+			display: block
+			border-bottom: 1px dashed #C4C4C4
+			position: absolute
+			bottom: 0
+			right: 0
+			left: 0
+
+		span
+			background: #fff
+			z-index: 1
+			&:first-child
+				padding-right: 10px
+			
+			&:last-child
+				padding-left: 10px
+
+			+r(576)
+				&:first-child
+					padding-right: 5px
+				
+				&:last-child
+					padding-left: 5px
 
 	&__disable
 		font-size: 1.25em
 		color: #A4A4A4
+		line-height: 1
+		margin-bottom: 10px
 
+//-----calendar-----
 .cabinet__calendar
-	width: 100%
-	height: 100vh
-	background-color: #12121f
-	color: #eee
+	max-width: 380px
+	height: 480px
+	background-color: #fff
 	display: flex
 	justify-content: center
 	align-items: center
+	padding: 30px 50px
+	flex-direction: column
+
+	+r(992)
+		margin-bottom: 15px
+		margin: auto
+
+	+r(576)
+		padding: 10%
+
+	&_text
+		display: flex
+		gap: 5px
+
+	&_circle
+		width: 12px
+		height: 12px
+		border-radius: 100px
+		display: block
+		flex-shrink: 0
+		background: $accent
+		margin-top: 5px
+
+	&_title
+		color: #000
+		font-size: 1.125em
+		margin-bottom: 5px
+
+	&_txt
+		font-size: 0.875em
+		color: #000
 
 .calendar
-	width: 45rem
-	height: 52rem
-	background-color: #222227
-	box-shadow: 0 0.5rem 3rem rgba(0, 0, 0, 0.4)
+	width: 280px
+	height: 600px
+	margin-bottom: 10px
 
 .month
 	width: 100%
-	height: 12rem
-	background-color: #167e56
+	height: 22px
+	color: #000
 	display: flex
 	justify-content: space-between
 	align-items: center
-	padding: 0 2rem
 	text-align: center
-	text-shadow: 0 0.3rem 0.5rem rgba(0, 0, 0, 0.5)
+	margin-bottom: 20px
 
-.month i 
-	font-size: 2.5rem
-	cursor: pointer
+	+r(576)
+		padding: 0 15px
 
-.month h1 
-	font-size: 3rem
-	font-weight: 400
-	text-transform: uppercase
-	letter-spacing: 0.2rem
-	margin-bottom: 1rem
+	i
+		cursor: pointer
 
-.month p 
-	font-size: 1.6rem
+	h1
+		font-size: 1.125em
+		font-weight: 700
+		text-transform: uppercase
 
-.weekdays 
+	p
+		font-size: 1.6rem
+		display: none
+
+.weekdays
 	width: 100%
-	height: 5rem
+	height: 50px
 	padding: 0 0.4rem
 	display: flex
 	align-items: center
 
-.weekdays div 
-	font-size: 1.5rem
-	font-weight: 400
-	letter-spacing: 0.1rem
-	width: calc(44.2rem / 7)
-	display: flex
-	justify-content: center
-	align-items: center
-	text-shadow: 0 0.3rem 0.5rem rgba(0, 0, 0, 0.5)
+	div
+		font-size: 0.875rem
+		font-weight: 600
+		letter-spacing: 0.1rem
+		width: 42px
+		display: flex
+		justify-content: center
+		align-items: center
+		color: #000
 
-.days 
+.days
 	width: 100%
 	display: flex
 	flex-wrap: wrap
-	padding: 0.2rem
+	background: #FCFCFC
 
-.days div 
-	font-size: 1.4rem
-	margin: 0.3rem
-	width: calc(40.2rem / 7)
-	height: 5rem
-	display: flex
-	justify-content: center
-	align-items: center
-	text-shadow: 0 0.3rem 0.5rem rgba(0, 0, 0, 0.5)
-	transition: background-color 0.2s
+	div
+		font-size: 0.875em
+		border: 1px solid #DFDFDF
+		width: 40px
+		height: 40px
+		display: flex
+		justify-content: center
+		align-items: center
+		color: #000
+		transition: background-color 0.2s
 
-.days div:hover:not(.today) 
-	background-color: #262626
-	border: 0.2rem solid #777
-	cursor: pointer
+	div:hover:not(.today)
+		background-color: $accent
+		border: 1px solid #000
+		cursor: pointer
 
 .prev-date,
 .next-date 
-	opacity: 0.5
+	color: #747474 !important
 
 .today 
-	background-color: #167e56
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-	// p
-	// 	display: flex
-	// 	justify-content: space-between
-	// 	max-width: 500px
-	// 	align-items: center
-	// 	position: relative
-
-	// 	span
-	// 		background: #fff
-	// 		z-index: 1
-	// 		padding: 5px
-	// 		&:first-child
-	// 			&::after
-	// 				content: '...................................................................'
-	// 				color: #C4C4C4
-	// 				font-size: 20px
-	// 				position: absolute
-	// 				bottom: 0
-
-
-// -----MODAL-----
-.modal
-	display: flex
-	visibility: hidden
-	opacity: 0
-	position: fixed
-	top: 0
-	left: 0
-	right: 0
-	bottom: 0
-	min-width: 100vw
-	min-height: 100vh
-	padding: 30px
-	z-index: 10000
-	background-color: rgba(#1a1a1d, .7)
-	overflow: auto
-	padding: 40px 0
-	+transition
-
-	&.active
-		opacity: 1
-		visibility: visible
-
-		.modal__form
-			transform: translate(0, 0)
-			opacity: 1
-
-	&__close
-		position: absolute
-		right: 0
-		top: -40px
-		display: block
-		width: 30px
-		height: 30px
-		border-radius: 50%
-		border: none
-		cursor: pointer
-		transition: all .6s
-		background-color: transparent
-
-		+r(576)
-			width: 30px
-			height: 30px
-
-		&:hover
-			outline: none
-			transform: rotate(90deg)
-
-			span
-				background: $accent
-
-		span
-			display: block
-			position: absolute
-			left: 50%
-			top: 50%
-			background: #fff
-			transition: all .6s
-			border-radius: 4px
-			height: 22px
-			width: 3px
-
-			&:first-child
-				transform: translate(-50%, -50%) rotate(45deg)
-
-			&:last-child
-				transform: translate(-50%, -50%) rotate(-45deg)
-
-	&__form
-		z-index: 1
-		background-color: #fff
-		box-shadow: 0 0 16px rgba(0, 0, 0, 0.29)
-		width: 100%
-		max-width: 500px
-		height: auto
-		padding: 50px
-		border: 1px solid #8d8d8e
-		margin: auto
-		transform: translate(0, -150px)
-		+transition
-
-		&::after
-			border-radius: 20px
-
-		+r(992)
-			max-width: 90vw
-			padding: 40px
-		
-		+r(576)
-			padding: 25px
-
-	h3
-		text-transform: none
-		font-size: 1.3em
-		margin-bottom: 20px
-		text-align: center
-		font-weight: 600
-
+	background-color: $accent
+	border: none !important
+	color: #fff !important
+	font-weight: 600 !important
 
 .form
 	position: relative
@@ -1271,8 +1328,14 @@
 	padding: 35px 50px 20px 50px
 	background: #fff
 	border-radius: 4px
-	margin-bottom: 80px
+	margin-bottom: 90px
 	+pseudo
+
+	+r(992)
+		max-width: 100%
+
+	+r(576)
+		padding: 25px
 
 	&::after
 		width: 100%
@@ -1450,7 +1513,7 @@
 				top: 4px
 				left: 4px
 				background-color: #fff
-				transform: scale(0)
+				border: 2px solid #fff
 				+transition
 
 			a
@@ -1460,7 +1523,7 @@
 			display: none
 
 			&:checked + .form__checkbox_label::after
-				transform: scale(1)
+				background: $accent
 
 	&__btn
 		order: 1
