@@ -798,12 +798,26 @@
 		+r(1200)
 			gap: 30px
 
+		+r(992)
+			flex-direction: column
+
+	&--active
+		.part__open
+			display: none
+
+		.part__open--active
+			display: block
+
 .part
 	max-width: 300px
 	width: 100%
 
 	+r(992)
+		max-width: 100%
 		display: none
+
+	&--block
+		display: block
 
 	&--open
 		display: block !important
@@ -816,6 +830,11 @@
 
 		+r(992)
 			display: block
+
+		button
+			border: none
+			background: transparent
+			text-decoration: underline
 
 	&__title
 		+r(992)

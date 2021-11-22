@@ -53,6 +53,8 @@ document.addEventListener("DOMContentLoaded", function() {
 			}
 	};
 	hamburgerr('.header__language', 'header__language--active', '.header__language_select', 'header__language_select--active', '.header', 'a');
+	hamburgerr('.btn--chapter', 'btn--chapter--active', '.part', 'part--block', '.chapter', 'chapter--active');
+
 
 		//----------------------TABS-JS----------------------
 	if (document.documentElement.clientWidth < 992) {
