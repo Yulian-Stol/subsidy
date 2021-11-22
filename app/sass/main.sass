@@ -830,6 +830,7 @@
 
 		+r(992)
 			display: block
+			flex-shrink: 0
 
 		button
 			border: none
@@ -839,6 +840,12 @@
 	&__title
 		+r(992)
 			margin-left: 0
+
+		&--margin
+			margin-top: 25px
+
+			+r(992)
+				margin-top: 0
 
 	&__menu
 		display: flex
@@ -992,7 +999,6 @@
 			max-width: 65%
 			margin-bottom: 0
 			margin-left: 0
-
 
 	&__titlesub
 		margin-top: 25px
